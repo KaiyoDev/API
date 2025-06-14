@@ -1,18 +1,53 @@
-// Initialize AOS with custom settings
-AOS.init({
-    duration: 800,
-    offset: 50,
-    once: true,
-    easing: 'ease-out-cubic'
+// Initialize GSAP ScrollTrigger
+gsap.registerPlugin(ScrollTrigger);
+
+// Hero Section Animation
+gsap.from('.hero-section h1', {
+    opacity: 0,
+    y: 50,
+    duration: 1,
+    ease: 'power3.out'
 });
 
-// Initialize Swiper with modern settings
-const swiper = new Swiper('.swiper', {
+gsap.from('.hero-section p', {
+    opacity: 0,
+    y: 30,
+    duration: 1,
+    delay: 0.3,
+    ease: 'power3.out'
+});
+
+gsap.from('.hero-section .flex', {
+    opacity: 0,
+    y: 30,
+    duration: 1,
+    delay: 0.6,
+    ease: 'power3.out'
+});
+
+// Feature Cards Animation
+gsap.utils.toArray('.feature-card').forEach((card, i) => {
+    gsap.from(card, {
+        scrollTrigger: {
+            trigger: card,
+            start: 'top bottom-=100',
+            toggleActions: 'play none none reverse'
+        },
+        opacity: 0,
+        y: 50,
+        duration: 0.8,
+        delay: i * 0.2,
+        ease: 'power3.out'
+    });
+});
+
+// Initialize Swiper
+const commandsSwiper = new Swiper('.commands-swiper', {
     slidesPerView: 1,
     spaceBetween: 30,
     loop: true,
     autoplay: {
-        delay: 5000,
+        delay: 3000,
         disableOnInteraction: false,
     },
     pagination: {
@@ -22,233 +57,198 @@ const swiper = new Swiper('.swiper', {
     breakpoints: {
         640: {
             slidesPerView: 2,
-            spaceBetween: 20,
         },
         1024: {
             slidesPerView: 3,
-            spaceBetween: 30,
         },
     }
 });
 
-// Smooth scroll with offset
+// Pricing Cards Animation
+gsap.utils.toArray('.pricing-card').forEach((card, i) => {
+    gsap.from(card, {
+        scrollTrigger: {
+            trigger: card,
+            start: 'top bottom-=100',
+            toggleActions: 'play none none reverse'
+        },
+        opacity: 0,
+        y: 50,
+        duration: 0.8,
+        delay: i * 0.2,
+        ease: 'power3.out'
+    });
+});
+
+// Form Handling
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get form data
+        const formData = new FormData(this);
+        const data = Object.fromEntries(formData);
+        
+        // Show loading state
+        const submitButton = this.querySelector('button[type="submit"]');
+        const originalText = submitButton.innerHTML;
+        submitButton.innerHTML = `
+            <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            Đang gửi...
+        `;
+        submitButton.disabled = true;
+        
+        // Simulate form submission
+        setTimeout(() => {
+            // Reset form
+            this.reset();
+            
+            // Show success message
+            const successAlert = document.createElement('div');
+            successAlert.className = 'mt-4 p-4 bg-green-500/10 border border-green-500/20 rounded-lg text-green-500';
+            successAlert.innerHTML = `
+                <div class="flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    Cảm ơn bạn đã liên hệ! Chúng tôi sẽ phản hồi sớm nhất có thể.
+                </div>
+            `;
+            this.appendChild(successAlert);
+            
+            // Reset button
+            submitButton.innerHTML = originalText;
+            submitButton.disabled = false;
+            
+            // Remove success message after 5 seconds
+            setTimeout(() => {
+                successAlert.remove();
+            }, 5000);
+        }, 1500);
+    });
+}
+
+// Smooth Scroll
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
-        const headerOffset = 80;
-        const elementPosition = target.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-        window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-        });
+        if (target) {
+            gsap.to(window, {
+                duration: 1,
+                scrollTo: {
+                    y: target,
+                    offsetY: 80
+                },
+                ease: 'power3.inOut'
+            });
+        }
     });
 });
 
-// Navbar scroll effect with debounce
+// Navbar Scroll Effect
 let lastScroll = 0;
-const navbar = document.querySelector('.navbar');
+const navbar = document.querySelector('nav');
 
-const debounce = (func, wait) => {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-};
-
-const handleScroll = debounce(() => {
+window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
     
     if (currentScroll <= 0) {
-        navbar.classList.remove('scrolled');
+        navbar.classList.remove('scroll-up');
         return;
     }
     
-    if (currentScroll > lastScroll) {
-        navbar.style.transform = 'translateY(-100%)';
-    } else {
-        navbar.style.transform = 'translateY(0)';
-        navbar.classList.add('scrolled');
+    if (currentScroll > lastScroll && !navbar.classList.contains('scroll-down')) {
+        // Scroll Down
+        navbar.classList.remove('scroll-up');
+        navbar.classList.add('scroll-down');
+    } else if (currentScroll < lastScroll && navbar.classList.contains('scroll-down')) {
+        // Scroll Up
+        navbar.classList.remove('scroll-down');
+        navbar.classList.add('scroll-up');
     }
-    
     lastScroll = currentScroll;
-}, 100);
-
-window.addEventListener('scroll', handleScroll);
-
-// Typing effect with cursor
-const typingText = document.querySelector('.typing-text');
-if (typingText) {
-    const text = typingText.textContent;
-    typingText.textContent = '';
-    let i = 0;
-    
-    const typeWriter = () => {
-        if (i < text.length) {
-            typingText.textContent += text.charAt(i);
-            i++;
-            setTimeout(typeWriter, 50);
-        } else {
-            typingText.classList.add('typing-done');
-        }
-    };
-    
-    typeWriter();
-}
-
-// Counter animation with easing
-const counters = document.querySelectorAll('.counter');
-const counterObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const counter = entry.target;
-            const target = parseInt(counter.getAttribute('data-target'));
-            let count = 0;
-            const duration = 2000;
-            const startTime = performance.now();
-            
-            const easeOutExpo = x => {
-                return x === 1 ? 1 : 1 - Math.pow(2, -10 * x);
-            };
-            
-            const updateCounter = (currentTime) => {
-                const elapsed = currentTime - startTime;
-                const progress = Math.min(elapsed / duration, 1);
-                const easedProgress = easeOutExpo(progress);
-                
-                count = Math.floor(target * easedProgress);
-                counter.textContent = count.toLocaleString();
-                
-                if (progress < 1) {
-                    requestAnimationFrame(updateCounter);
-                } else {
-                    counter.textContent = target.toLocaleString();
-                }
-            };
-            
-            requestAnimationFrame(updateCounter);
-            counterObserver.unobserve(counter);
-        }
-    });
-}, { threshold: 0.5 });
-
-counters.forEach(counter => counterObserver.observe(counter));
-
-// Form validation with custom messages
-const forms = document.querySelectorAll('.needs-validation');
-Array.from(forms).forEach(form => {
-    form.addEventListener('submit', event => {
-        if (!form.checkValidity()) {
-            event.preventDefault();
-            event.stopPropagation();
-            
-            // Add custom validation messages
-            const inputs = form.querySelectorAll('input, textarea');
-            inputs.forEach(input => {
-                if (!input.checkValidity()) {
-                    const feedback = input.nextElementSibling;
-                    if (feedback && feedback.classList.contains('invalid-feedback')) {
-                        feedback.textContent = input.validationMessage;
-                    }
-                }
-            });
-        }
-        form.classList.add('was-validated');
-    }, false);
 });
 
-// Dark mode toggle with system preference
-const darkModeToggle = document.querySelector('.dark-mode-toggle');
-const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-
-const setDarkMode = (isDark) => {
-    document.body.classList.toggle('dark-mode', isDark);
-    const icon = darkModeToggle.querySelector('i');
-    icon.classList.toggle('fa-moon', !isDark);
-    icon.classList.toggle('fa-sun', isDark);
-    localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
-};
-
-if (darkModeToggle) {
-    darkModeToggle.addEventListener('click', () => {
-        const isDark = !document.body.classList.contains('dark-mode');
-        setDarkMode(isDark);
+// Parallax Effect
+gsap.utils.toArray('.parallax').forEach(section => {
+    gsap.to(section, {
+        yPercent: 30,
+        ease: 'none',
+        scrollTrigger: {
+            trigger: section,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true
+        }
     });
-    
-    // Check for saved preference or system preference
-    const savedPreference = localStorage.getItem('darkMode');
-    if (savedPreference) {
-        setDarkMode(savedPreference === 'enabled');
-    } else {
-        setDarkMode(prefersDarkScheme.matches);
-    }
-}
-
-// Loading animation with progress
-window.addEventListener('load', () => {
-    const loader = document.querySelector('.loader');
-    if (loader) {
-        loader.classList.add('hidden');
-        setTimeout(() => {
-            loader.style.display = 'none';
-        }, 500);
-    }
 });
 
-// Add hover effects to cards with parallax
-document.querySelectorAll('.card').forEach(card => {
-    card.addEventListener('mousemove', (e) => {
+// Mouse Move Effect
+document.addEventListener('mousemove', (e) => {
+    const cards = document.querySelectorAll('.feature-card, .pricing-card');
+    const x = e.clientX / window.innerWidth;
+    const y = e.clientY / window.innerHeight;
+    
+    cards.forEach(card => {
         const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+        const cardX = rect.left + rect.width / 2;
+        const cardY = rect.top + rect.height / 2;
         
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
+        const angleX = (y - cardY / window.innerHeight) * 10;
+        const angleY = (x - cardX / window.innerWidth) * -10;
         
-        const rotateX = (y - centerY) / 10;
-        const rotateY = (centerX - x) / 10;
-        
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+        card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) scale3d(1.05, 1.05, 1.05)`;
     });
-    
-    card.addEventListener('mouseleave', () => {
+});
+
+// Reset card transform on mouse leave
+document.addEventListener('mouseleave', () => {
+    const cards = document.querySelectorAll('.feature-card, .pricing-card');
+    cards.forEach(card => {
         card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
     });
 });
 
-// Add animation classes to elements with delay
-document.querySelectorAll('.hero-content h1').forEach(el => {
-    el.classList.add('animate__animated', 'animate__fadeInDown');
-});
+// Mobile menu toggle
+const navbarToggler = document.querySelector('.navbar-toggler');
+const navbarCollapse = document.querySelector('.navbar-collapse');
 
-document.querySelectorAll('.hero-content p').forEach(el => {
-    el.classList.add('animate__animated', 'animate__fadeInUp');
-});
+if (navbarToggler && navbarCollapse) {
+    navbarToggler.addEventListener('click', () => {
+        navbarCollapse.classList.toggle('show');
+    });
 
-document.querySelectorAll('.card').forEach((el, index) => {
-    el.classList.add('animate__animated', 'animate__fadeInUp');
-    el.style.animationDelay = `${index * 0.1}s`;
-});
-
-// Add scroll reveal animations with custom threshold
-const revealElements = document.querySelectorAll('.reveal');
-const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('revealed');
-            revealObserver.unobserve(entry.target);
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!navbarToggler.contains(e.target) && !navbarCollapse.contains(e.target)) {
+            navbarCollapse.classList.remove('show');
         }
     });
-}, { 
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-});
+}
 
-revealElements.forEach(el => revealObserver.observe(el)); 
+// Add active class to current nav item
+function setActiveNavItem() {
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= 100 && rect.bottom >= 100) {
+            const id = section.getAttribute('id');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${id}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    });
+}
+
+window.addEventListener('scroll', setActiveNavItem);
+window.addEventListener('load', setActiveNavItem); 
