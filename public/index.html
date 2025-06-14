@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaiyo Bot - Quản lý nhóm Messenger thông minh</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Loader -->
+    <div class="loader">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fab fa-facebook-messenger"></i> Kaiyo Bot
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Tính năng</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#pricing">Bảng giá</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#guide">Hướng dẫn</a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-outline-primary ms-3 dark-mode-toggle">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container hero-content">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h1 class="display-4 mb-4 animate__animated animate__fadeInDown">
+                        <span class="typing-text">Quản lý nhóm Messenger thông minh</span>
+                    </h1>
+                    <p class="lead mb-5 animate__animated animate__fadeInUp">
+                        Giải pháp tự động hóa và quản lý nhóm chat Messenger chuyên nghiệp, giúp bạn tiết kiệm thời gian và tăng hiệu quả quản lý.
+                    </p>
+                    <div class="d-flex gap-3 animate__animated animate__fadeInUp">
+                        <a href="#features" class="btn btn-primary">Khám phá ngay</a>
+                        <a href="#guide" class="btn btn-outline-light">Xem hướng dẫn</a>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="hero-stats">
+                        <div class="row g-4">
+                            <div class="col-6">
+                                <div class="card text-center p-4">
+                                    <h3 class="counter" data-target="1000">0</h3>
+                                    <p class="text-muted mb-0">Nhóm đang sử dụng</p>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="card text-center p-4">
+                                    <h3 class="counter" data-target="50000">0</h3>
+                                    <p class="text-muted mb-0">Thành viên</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 mb-3">Tính năng nổi bật</h2>
+                <p class="lead text-muted">Khám phá những tính năng mạnh mẽ giúp quản lý nhóm của bạn hiệu quả hơn</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card h-100 p-4">
+                        <div class="text-center">
+                            <i class="fas fa-users-cog icon"></i>
+                            <h3>Quản lý thành viên</h3>
+                            <p>Tự động quản lý thành viên, phát hiện spam và người dùng không mong muốn</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card h-100 p-4">
+                        <div class="text-center">
+                            <i class="fas fa-robot icon"></i>
+                            <h3>Tự động hóa</h3>
+                            <p>Tự động chào mừng, cảnh báo và xử lý các tình huống trong nhóm</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card h-100 p-4">
+                        <div class="text-center">
+                            <i class="fas fa-chart-line icon"></i>
+                            <h3>Báo cáo thống kê</h3>
+                            <p>Theo dõi hoạt động nhóm và tạo báo cáo chi tiết</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing-section">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 mb-3">Bảng giá</h2>
+                <p class="lead text-muted">Lựa chọn gói phù hợp với nhu cầu của bạn</p>
+            </div>
+            <div class="row">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="pricing-card">
+                        <h3>Gói Cơ bản</h3>
+                        <div class="price">
+                            <span>Miễn phí</span>
+                            <small>/2 tháng</small>
+                        </div>
+                        <ul class="features list-unstyled">
+                            <li><i class="fas fa-check"></i> Quản lý 1 nhóm</li>
+                            <li><i class="fas fa-check"></i> Tính năng cơ bản</li>
+                            <li><i class="fas fa-check"></i> Hỗ trợ qua email</li>
+                            <li><i class="fas fa-check"></i> Báo cáo đơn giản</li>
+                        </ul>
+                        <button class="btn btn-primary w-100">Bắt đầu ngay</button>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="pricing-card popular">
+                        <div class="badge bg-primary">Phổ biến</div>
+                        <h3>Gói Tháng</h3>
+                        <div class="price">
+                            <span>20k</span>
+                            <small>/tháng</small>
+                        </div>
+                        <ul class="features list-unstyled">
+                            <li><i class="fas fa-check"></i> Quản lý 3 nhóm</li>
+                            <li><i class="fas fa-check"></i> Tất cả tính năng</li>
+                            <li><i class="fas fa-check"></i> Hỗ trợ 24/7</li>
+                            <li><i class="fas fa-check"></i> Báo cáo nâng cao</li>
+                            <li><i class="fas fa-check"></i> Tùy chỉnh lệnh</li>
+                        </ul>
+                        <button class="btn btn-primary w-100">Đăng ký ngay</button>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="pricing-card">
+                        <h3>Gói Năm</h3>
+                        <div class="price">
+                            <span>199k</span>
+                            <small>/năm</small>
+                        </div>
+                        <ul class="features list-unstyled">
+                            <li><i class="fas fa-check"></i> Quản lý 5 nhóm</li>
+                            <li><i class="fas fa-check"></i> Tất cả tính năng</li>
+                            <li><i class="fas fa-check"></i> Hỗ trợ ưu tiên</li>
+                            <li><i class="fas fa-check"></i> Báo cáo chi tiết</li>
+                            <li><i class="fas fa-check"></i> API riêng</li>
+                            <li><i class="fas fa-check"></i> Tùy chỉnh nâng cao</li>
+                        </ul>
+                        <button class="btn btn-primary w-100">Liên hệ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guide Section -->
+    <section id="guide" class="guide-section">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 mb-3">Hướng dẫn sử dụng</h2>
+                <p class="lead text-muted">Bắt đầu sử dụng Kaiyo Bot chỉ với 4 bước đơn giản</p>
+            </div>
+            <div class="row">
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card text-center p-4">
+                        <div class="number">1</div>
+                        <h4>Kết nối với nhóm</h4>
+                        <p>Thêm bot vào nhóm Messenger của bạn</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card text-center p-4">
+                        <div class="number">2</div>
+                        <h4>Cấu hình bot</h4>
+                        <p>Tùy chỉnh các tính năng cho nhóm</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card text-center p-4">
+                        <div class="number">3</div>
+                        <h4>Quản lý nhóm</h4>
+                        <p>Theo dõi hoạt động của nhóm</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="400">
+                    <div class="card text-center p-4">
+                        <div class="number">4</div>
+                        <h4>Tùy chỉnh nâng cao</h4>
+                        <p>Tạo quy tắc và phản hồi tùy chỉnh</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 text-center" data-aos="fade-up">
+                    <h2 class="display-5 mb-4">Bắt đầu sử dụng Kaiyo Bot ngay hôm nay</h2>
+                    <p class="lead mb-5">Dùng thử miễn phí trong 2 tháng. Không cần thẻ tín dụng.</p>
+                    <form class="needs-validation" novalidate>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Họ và tên" required>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="email" class="form-control" placeholder="Email" required>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary btn-lg w-100">Đăng ký dùng thử</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h4><i class="fab fa-facebook-messenger"></i> Kaiyo Bot</h4>
+                    <p class="text-muted">Giải pháp quản lý nhóm Messenger thông minh, giúp bạn tiết kiệm thời gian và tăng hiệu quả quản lý.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h4>Sản phẩm</h4>
+                    <ul>
+                        <li><a href="#features">Tính năng</a></li>
+                        <li><a href="#pricing">Bảng giá</a></li>
+                        <li><a href="#guide">Hướng dẫn</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h4>Hỗ trợ</h4>
+                    <ul>
+                        <li><a href="#">Trung tâm trợ giúp</a></li>
+                        <li><a href="#">Tài liệu</a></li>
+                        <li><a href="#">Liên hệ</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h4>Công ty</h4>
+                    <ul>
+                        <li><a href="#">Về chúng tôi</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Tuyển dụng</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h4>Pháp lý</h4>
+                    <ul>
+                        <li><a href="#">Điều khoản</a></li>
+                        <li><a href="#">Bảo mật</a></li>
+                        <li><a href="#">Cookie</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="mt-4 mb-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2024 Kaiyo Bot. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">Made with <i class="fas fa-heart text-danger"></i> in Vietnam</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

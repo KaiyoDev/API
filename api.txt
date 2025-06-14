@@ -1,0 +1,90 @@
+
+
+dữ liệu trả về {
+  "code": 0,
+  "msg": "success",
+  "processed_time": 0.4275,
+  "data": {
+    "id": "7507329961125039368",
+    "region": "PH",
+    "title": "The way he protected her😭 #fyp #viral #makeitvirаl ",
+    "cover": "/video/cover/7507329961125039368.webp",
+    "duration": 6,
+    "play": "/video/media/play/7507329961125039368.mp4",
+    "wmplay": "/video/media/wmplay/7507329961125039368.mp4",
+    "hdplay": "/video/media/hdplay/7507329961125039368.mp4",
+    "size": 407848,
+    "wm_size": 531436,
+    "hd_size": 229298,
+    "music": "/video/music/7507329961125039368.mp3",
+    "music_info": {
+      "id": "7507329986383252241",
+      "title": "original sound - daveramos2025",
+      "play": "https://sf-tk-sg.ibytedtos.com/obj/tiktok-obj/7507329984759958288.mp3",
+      "author": "℘𝔽𝕆ℝ𝔻℘",
+      "original": true,
+      "duration": 6,
+      "album": ""
+    },
+    "play_count": 4348455,
+    "digg_count": 185343,
+    "comment_count": 1431,
+    "share_count": 85673,
+    "download_count": 3118,
+    "collect_count": 15533,
+    "create_time": 1747936472,
+    "anchors": [
+      {
+        "actions": [],
+        "anchor_strong": null,
+        "component_key": "anchor_poi",
+        "description": "Location",
+        "extra": "{\"Name\":\"Vietnam\",\"poi_id\":\"22535865202623430\",\"city_code\":\"1576069\",\"region_code\":\"1562822\",\"poi_backend_type\":\"Place and Address,Places,Country|19a3a1\",\"poi_info_source\":\"unknown\",\"video_count\":2880846,\"collect_info\":\"{\\\"tt_type_code\\\":\\\"19a3a1\\\",\\\"is_tt_key_category\\\":0,\\\"tt_poi_type_name_level0\\\":\\\"Place and Address\\\",\\\"fake_mining_grade\\\":\\\"5\\\",\\\"tt_poi_type_name_level1\\\":\\\"Place and Address\\\",\\\"is_display_distance\\\":0,\\\"poi_detail_type\\\":\\\"regional\\\",\\\"is_bad_case\\\":0,\\\"has_product\\\":0,\\\"is_product_visible\\\":0,\\\"has_service\\\":0,\\\"is_service_visible\\\":0,\\\"is_shop_url_visible\\\":0,\\\"poi_bizline\\\":\\\"\\\",\\\"local_service_key_category\\\":\\\"Others\\\",\\\"poi_class_name\\\":\\\"Regional\\\",\\\"has_commodity_ref_g1\\\":\\\"0\\\"}\",\"poi_mapkit_collect\":false,\"location\":{\"lat\":\"14.058324\",\"lng\":\"108.277199\",\"geohash\":\"w6kzzzjp9te3\"},\"fallback_address\":\"Asia\",\"type_level\":\"1\",\"fav_cnt\":91560,\"is_tt_key_category\":0,\"is_ls_key_category\":0,\"category_name\":\"Country\",\"formatted_address\":\"Asia\"}",
+        "general_type": 1,
+        "icon": {
+          "height": 720,
+          "uri": "tiktok-obj/Map_Pin.png",
+          "url_list": [
+            "https://p16-sg.tiktokcdn.com/tiktok-obj/Map_Pin.png~tplv-tiktokx-origin.image?biz_tag=anchor.poi&dr=14000&idc=maliva&ps=933b5bde&shcp=34ff8df6&shp=d05b14bd&t=4d5b0474",
+            "https://p16-sg.tiktokcdn.com/tiktok-obj/Map_Pin.png~tplv-tiktokx-origin.jpeg?biz_tag=anchor.poi&dr=14000&idc=maliva&ps=933b5bde&shcp=34ff8df6&shp=d05b14bd&t=4d5b0474"
+          ],
+          "url_prefix": null,
+          "width": 720
+        },
+        "id": "22535865202623430",
+        "keyword": "Vietnam",
+        "log_extra": "{\"anchor_id\":\"22535865202623430\",\"anchor_name\":\"Vietnam\",\"anchor_type\":\"poi\",\"is_ad_signal\":\"0\"}",
+        "schema": "aweme://poi/detail",
+        "thumbnail": {
+          "height": 64,
+          "uri": "tiktok-obj/poi_thumbnail_3x.png",
+          "url_list": [
+            "https://p16-sg.tiktokcdn.com/tiktok-obj/poi_thumbnail_3x.png~tplv-tiktokx-origin.image?dr=14000&t=4d5b0474&ps=933b5bde&shp=d05b14bd&shcp=34ff8df6&idc=maliva",
+            "https://p16-sg.tiktokcdn.com/tiktok-obj/poi_thumbnail_3x.png~tplv-tiktokx-origin.jpeg?dr=14000&t=4d5b0474&ps=933b5bde&shp=d05b14bd&shcp=34ff8df6&idc=maliva"
+          ],
+          "url_prefix": null,
+          "width": 64
+        },
+        "type": 45
+      }
+    ],
+    "anchors_extras": "",
+    "is_ad": false,
+    "commerce_info": {
+      "adv_promotable": false,
+      "auction_ad_invited": false,
+      "branded_content_type": 0,
+      "organic_log_extra": "{\"req_id\":\"202506141613252BAE9D48D4F24468DF8C\"}",
+      "with_comment_filter_words": false
+    },
+    "commercial_video_info": "",
+    "item_comment_settings": 0,
+    "mentioned_users": "",
+    "author": {
+      "id": "7263034044853273606",
+      "unique_id": "daveramos2025",
+      "nickname": "℘𝔽𝕆ℝ𝔻℘",
+      "avatar": "/video/avatar/7507329961125039368.jpeg"
+    }
+  }
+}
