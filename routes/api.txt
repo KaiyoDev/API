@@ -1,6 +1,16 @@
 Tải tiktok
 /api/dowtik?url=https://www.tiktok.com/@
 
+Xu Hướng tiktok
+/api/seachtik
 
+Xem feed user tiktok
+/api//seachusertik?user=
+
+Tìm vid tiktok
+/api/seachvidtik?keyword=
+
+Tìm ảnh tiktok
+/api/seachpictik?keyword=
 
 

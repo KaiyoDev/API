@@ -39,7 +39,6 @@ const dowtik = async (req, res) => {
             title: d.title,
             cover: "https://tikwm.com" + d.cover,
             duration: d.duration,
-            play: "https://tikwm.com/" + d.play,
             music: d.music_info ? d.music_info.play : d.music,
             author: d.author ? {
                 id: d.author.id,
@@ -50,8 +49,14 @@ const dowtik = async (req, res) => {
             play_count: d.play_count,
             digg_count: d.digg_count,
             comment_count: d.comment_count,
-            share_count: d.share_count
-        };
+            share_count: d.share_count,
+            images: d.images || []
+        };4
+
+        // Thêm play URL nếu không có ảnh
+        if (!d.images || d.images.length === 0) {
+            result.play = "https://tikwm.com/" + d.play;
+        }
 
         return res.json({
             success: true,
