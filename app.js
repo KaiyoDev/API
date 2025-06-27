@@ -8,13 +8,14 @@ const { redirect, setBaseUrl } = require('./src/models/rutgon');
 process.on('uncaughtException', console.log)
 
 const PORT = process.env.PORT || 5000;
-const DOMAIN = process.env.DOMAIN || 'localhost';
+const DOMAIN = process.env.DOMAIN || 'kaiyobot.gis-humg.com';
 
 // Cấu hình base URL theo môi trường
 if (process.env.NODE_ENV === 'production') {
     setBaseUrl(`https://${DOMAIN}`);
 } else {
-    setBaseUrl(`http://${DOMAIN}:${PORT}`);
+    // Cho local development vẫn dùng localhost
+    setBaseUrl(`http://localhost:${PORT}`);
 }
 
 app.use(express.json());

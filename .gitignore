@@ -5,7 +5,8 @@
 
 # Testing
 /coverage
-
+api.txt
+test.js
 # Production
 /build
 /dist

@@ -157,48 +157,7 @@ function scanAndRegisterAPIs(directory) {
 scanAndRegisterAPIs(path.join(__dirname, '../src'));
 
 router.get('/', (req, res) => {
-    const apiDocs = `
-# 🔗 Kaiyo API - URL Shortener Service
-
-## URL Shortener Endpoints:
-
-### POST /api/shorten
-Rút gọn URL với tùy chọn mã tùy chỉnh và thời gian hết hạn
-Body: { "url": "https://example.com", "customCode": "optional", "expiryHours": 24 }
-
-### GET /:shortCode
-Chuyển tiếp đến URL gốc
-
-### GET /api/stats/:shortCode
-Xem thống kê của một URL cụ thể
-
-### GET /api/stats
-Xem thống kê tổng quan hệ thống
-
-### GET /api/urls?page=1&limit=10
-Xem danh sách URLs (có phân trang)
-
-### DELETE /api/delete/:shortCode
-Xóa một URL rút gọn
-
-### POST /api/config/baseurl
-Cập nhật base URL
-Body: { "baseUrl": "https://yourdom.com" }
-
-## ✨ Tính năng:
-- ✅ Tự động xóa sau 24h (configurable)
-- ✅ Thống kê clicks chi tiết
-- ✅ Mã tùy chỉnh
-- ✅ Lưu trữ MongoDB persistent
-- ✅ Pagination
-- ✅ Auto cleanup job
-
-## 🎯 Ví dụ:
-curl -X POST http://localhost:5000/api/shorten \\
-  -H "Content-Type: application/json" \\
-  -d '{"url": "https://www.google.com", "customCode": "google"}'
-    `;
-    
+    const apiDocs = fs.readFileSync(path.join(__dirname, '../routes/api.txt'), 'utf8');
     res.send(`<pre>${apiDocs}</pre>`);
 });
 

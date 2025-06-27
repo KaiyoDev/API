@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { shortenUrl } = require('../models/rutgon');
+const { shortenUrl, setBaseUrl } = require('../models/rutgon');
 
 const ytbdown = async (req, res) => {
     try {
@@ -8,6 +8,9 @@ const ytbdown = async (req, res) => {
         if (!url) {
             return res.status(400).json({ success: false, error: 'Thiếu URL YouTube' });
         }
+
+        // Cấu hình domain cho URL rút gọn
+        setBaseUrl('https://kaiyobot.gis-humg.com');
 
         // Trích xuất video ID từ URL YouTube
         const extractVideoId = (url) => {
@@ -77,7 +80,7 @@ const ytbdown = async (req, res) => {
             return res.status(404).json({ success: false, error: 'Không tìm thấy định dạng video phù hợp' });
         }
 
-        // Rút gọn URL download bằng module rút gọn URL
+        // Rút gọn URL download bằng module rút gọn URL với domain Kaiyo Bot
         let shortUrl = bestVideoFormat.url; // Fallback nếu rút gọn thất bại
         
         try {
@@ -104,7 +107,7 @@ const ytbdown = async (req, res) => {
             quality: bestVideoFormat.height + 'p',
             mimeType: bestVideoFormat.mimeType || 'video/mp4',
             size: bestVideoFormat.contentLength || 'unknown',
-            url: shortUrl // URL đã được rút gọn
+            url: shortUrl // URL đã được rút gọn với domain kaiyobot.gis-humg.com
         };
 
         return res.json({
