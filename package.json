@@ -21,7 +21,10 @@
     "mongoose": "^7.0.0",
     "node-fetch": "^3.3.2",
     "socket.io": "^4.6.1",
-    "undici": "^7.10.0"
+    "undici": "^7.10.0",
+    "youtube-dl-exec": "^3.0.22",
+    "yt-dlp-wrap": "^2.3.12",
+    "ytdl-core": "^4.11.5"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"

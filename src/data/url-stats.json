@@ -1,0 +1,32 @@
+{
+  "99698e": {
+    "clicks": 3,
+    "lastAccessAt": "2025-06-27T01:10:23.082Z",
+    "ips": [
+      "192.168.1.1",
+      "192.168.1.2",
+      "::1"
+    ],
+    "userAgents": [
+      "Mozilla/5.0",
+      "Chrome/91.0",
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"
+    ]
+  },
+  "stack": {
+    "clicks": 0,
+    "lastAccessAt": null,
+    "ips": [],
+    "userAgents": []
+  },
+  "ytb_5U7NYhMequY_720p": {
+    "clicks": 1,
+    "lastAccessAt": "2025-06-27T01:15:04.075Z",
+    "ips": [
+      "::1"
+    ],
+    "userAgents": [
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36"
+    ]
+  }
+}
