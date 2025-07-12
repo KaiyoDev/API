@@ -157,8 +157,8 @@ function scanAndRegisterAPIs(directory) {
 scanAndRegisterAPIs(path.join(__dirname, '../src'));
 
 router.get('/', (req, res) => {
-    const apiDocs = fs.readFileSync(path.join(__dirname, '../routes/api.txt'), 'utf8');
-    res.send(`<pre>${apiDocs}</pre>`);
+    const apiDocs = fs.readFileSync(path.join(__dirname, '../routes/doc.html'), 'utf8');
+    res.send(apiDocs);
 });
 
 module.exports = router;

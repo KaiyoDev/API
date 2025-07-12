@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaiyo API Documentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #3498db, #8e44ad);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            color: #7f8c8d;
+            font-size: 1.2em;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+        }
+
+        .section-title {
+            color: #2c3e50;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3498db;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .api-card {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .api-card:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-color: #3498db;
+        }
+
+        .api-title {
+            color: #2c3e50;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .method {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .method.get {
+            background: #e8f5e8;
+            color: #27ae60;
+            border: 1px solid #27ae60;
+        }
+
+        .method.post {
+            background: #fff3cd;
+            color: #f39c12;
+            border: 1px solid #f39c12;
+        }
+
+        .endpoint {
+            background: #2c3e50;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+
+        .params {
+            margin: 15px 0;
+        }
+
+        .params h4 {
+            color: #34495e;
+            margin-bottom: 8px;
+        }
+
+        .param-item {
+            background: #ecf0f1;
+            padding: 8px 12px;
+            margin: 5px 0;
+            border-radius: 6px;
+            border-left: 4px solid #3498db;
+        }
+
+        .required {
+            background: #ffebee;
+            border-left-color: #e74c3c;
+        }
+
+        .example {
+            background: #e8f5e8;
+            border: 1px solid #27ae60;
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 15px;
+        }
+
+        .example h4 {
+            color: #27ae60;
+            margin-bottom: 8px;
+        }
+
+        .example code {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 10px;
+            border-radius: 6px;
+            display: block;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+
+        .response-format {
+            background: #f1f2f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .response-format h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .json-code {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            line-height: 1.4;
+        }
+
+        .guide {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .guide h3 {
+            margin-bottom: 15px;
+        }
+
+        .guide ol {
+            padding-left: 20px;
+        }
+
+        .guide li {
+            margin: 8px 0;
+        }
+
+        .footer {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 40px;
+            padding: 20px;
+        }
+
+        /* Search Box */
+        .search-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 25px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .search-box:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+
+        /* Table of Contents */
+        .toc {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .toc h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .toc li {
+            margin: 8px 0;
+        }
+
+        .toc a {
+            color: #3498db;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .toc a:hover {
+            background: #f8f9fa;
+            transform: translateX(5px);
+        }
+
+        /* Copy Button */
+        .copy-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-left: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: #2980b9;
+            transform: scale(1.05);
+        }
+
+        .copy-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Dark Mode Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            font-size: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+        }
+
+        body.dark-mode .section,
+        body.dark-mode .header,
+        body.dark-mode .search-container,
+        body.dark-mode .toc {
+            background: rgba(52, 73, 94, 0.95);
+            color: #ecf0f1;
+        }
+
+        body.dark-mode .api-card {
+            background: #34495e;
+            border-color: #566573;
+            color: #ecf0f1;
+        }
+
+        body.dark-mode .param-item {
+            background: #566573;
+            color: #ecf0f1;
+        }
+
+        body.dark-mode .search-box {
+            background: #34495e;
+            border-color: #566573;
+            color: #ecf0f1;
+        }
+
+        body.dark-mode .theme-toggle {
+            background: rgba(52, 73, 94, 0.9);
+            color: #ecf0f1;
+        }
+
+        /* Animation for sections */
+        .section {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Status indicator */
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-left: 10px;
+            animation: pulse 2s infinite;
+        }
+
+        .status-indicator.online {
+            background: #27ae60;
+        }
+
+        .status-indicator.offline {
+            background: #e74c3c;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+
+            .theme-toggle {
+                top: 10px;
+                right: 10px;
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+    
+    <div class="container">
+        <div class="header">
+            <h1>📋 KAIYO API DOCUMENTATION <span class="status-indicator online"></span></h1>
+            <p>Comprehensive API documentation for all Kaiyo services</p>
+        </div>
+
+        <div class="search-container">
+            <input type="text" class="search-box" placeholder="🔍 Tìm kiếm API... (ví dụ: tiktok, youtube, rutgon)" onkeyup="searchAPI()">
+        </div>
+
+        <div class="toc">
+            <h3>📑 Mục Lục</h3>
+            <ul>
+                <li><a href="#tiktok-apis">🎬 TikTok APIs</a></li>
+                <li><a href="#youtube-apis">📺 YouTube APIs</a></li>
+                <li><a href="#url-shortener-apis">🔗 URL Shortener APIs</a></li>
+                <li><a href="#response-format">📊 Response Format</a></li>
+                <li><a href="#guide">🚀 Hướng Dẫn</a></li>
+            </ul>
+        </div>
+
+        <div class="section" id="tiktok-apis">
+            <h2 class="section-title">🎬 TikTok APIs</h2>
+            
+            <div class="api-card">
+                <h3 class="api-title">📥 Tải Video TikTok <span class="method get">GET</span></h3>
+                <div class="endpoint">/api/dowtik <button class="copy-btn" onclick="copyToClipboard('/api/dowtik')">Copy</button></div>
+                <div class="params">
+                    <h4>Parameters:</h4>
+                    <div class="param-item required">
+                        <strong>url</strong> (required): URL video TikTok cần tải xuống
+                    </div>
+                </div>
+                <div class="example">
+                    <h4>Example:</h4>
+                    <code>/api/dowtik?url=https://www.tiktok.com/@username/video/123456789</code>
+                </div>
+            </div>
+
+            <div class="api-card">
+                <h3 class="api-title">🔥 Xu Hướng TikTok <span class="method get">GET</span></h3>
+                <div class="endpoint">/api/seachtik</div>
+                <p>Lấy danh sách video xu hướng trên TikTok</p>
+                <div class="example">
+                    <h4>Example:</h4>
+                    <code>/api/seachtik</code>
+                </div>
+            </div>
+
+            <div class="api-card">
+                <h3 class="api-title">👤 Xem Feed User TikTok <span class="method get">GET</span></h3>
+                <div class="endpoint">/api/seachusertik</div>
+                <div class="params">
+                    <h4>Parameters:</h4>
+                    <div class="param-item required">
+                        <strong>user</strong> (required): Tên người dùng TikTok
+                    </div>
+                </div>
+                <div class="example">
+                    <h4>Example:</h4>
+                    <code>/api/seachusertik?user=username</code>
+                </div>
+            </div>
+
+            <div class="api-card">
+                <h3 class="api-title">🔍 Tìm Video TikTok <span class="method get">GET</span></h3>
+                <div class="endpoint">/api/seachvidtik</div>
+                <div class="params">
+                    <h4>Parameters:</h4>
+                    <div class="param-item required">
+                        <strong>keyword</strong> (required): Từ khóa tìm kiếm video
+                    </div>
+                </div>
+                <div class="example">
+                    <h4>Example:</h4>
+                    <code>/api/seachvidtik?keyword=funny</code>
+                </div>
+            </div>
+
+            <div class="api-card">
+                <h3 class="api-title">🖼️ Tìm Ảnh TikTok <span class="method get">GET</span></h3>
+                <div class="endpoint">/api/seachpictik</div>
+                <div class="params">
+                    <h4>Parameters:</h4>
+                    <div class="param-item required">
+                        <strong>keyword</strong> (required): Từ khóa tìm kiếm ảnh
+                    </div>
+                </div>
+                <div class="example">
+                    <h4>Example:</h4>
+                    <code>/api/seachpictik?keyword=nature</code>
+                </div>
+            </div>
+        </div>
+
+        <div class="section" id="youtube-apis">
+            <h2 class="section-title">📺 YouTube APIs</h2>
+            
+            <div class="api-card">
+                <h3 class="api-title">📥 Tải Video YouTube <span class="method get">GET</span></h3>
+                <div class="endpoint">/api/ytbdown</div>
+                <div class="params">
+                    <h4>Parameters:</h4>
+                    <div class="param-item required">
+                        <strong>url</strong> (required): URL video YouTube cần tải xuống
+                    </div>
+                </div>
+                <div class="example">
+                    <h4>Example:</h4>
+                    <code>/api/ytbdown?url=https://www.youtube.com/watch?v=VIDEO_ID</code>
+                </div>
+            </div>
+        </div>
+
+        <div class="section" id="url-shortener-apis">
+            <h2 class="section-title">🔗 URL Shortener APIs</h2>
+            
+            <div class="api-card">
+                <h3 class="api-title">✂️ Rút Gọn URL <span class="method post">POST</span></h3>
+                <div class="endpoint">/api/rutgon</div>
+                <div class="params">
+                    <h4>Parameters:</h4>
+                    <div class="param-item required">
+                        <strong>url</strong> (required): URL cần rút gọn
+                    </div>
+                </div>
+                <div class="example">
+                    <h4>Example:</h4>
+                    <code>POST /api/rutgon<br>Body: {"url": "https://example.com"}</code>
+                </div>
+            </div>
+        </div>
+
+        <div class="response-format" id="response-format">
+            <h3>📊 Response Format</h3>
+            <p>Tất cả API trả về dữ liệu dưới dạng JSON:</p>
+            <div class="json-code">{
+  "success": true/false,
+  "data": "...",
+  "message": "..."
+}</div>
+        </div>
+
+        <div class="guide" id="guide">
+            <h3>🚀 Cách Thêm API Mới</h3>
+            <ol>
+                <li>Thêm endpoint mới vào section phù hợp</li>
+                <li>Sử dụng cấu trúc API card với đầy đủ thông tin</li>
+                <li>Đảm bảo có endpoint, method, parameters và example</li>
+                <li>Thêm mô tả rõ ràng cho từng parameter</li>
+                <li>Test API trước khi thêm vào documentation</li>
+            </ol>
+        </div>
+
+        <div class="footer">
+            <p>📞 <strong>Liên hệ:</strong> Nếu có thắc mắc về API, vui lòng liên hệ admin.</p>
+            <p>🔄 <strong>Cập nhật lần cuối:</strong> <span id="lastUpdate"></span></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('lastUpdate').textContent = new Date().toLocaleDateString('vi-VN');
+        
+        // Theme Toggle
+        function toggleTheme() {
+            const body = document.body;
+            const toggle = document.querySelector('.theme-toggle');
+            
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                toggle.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                toggle.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+        
+        // Load saved theme
+        window.addEventListener('load', () => {
+            const savedTheme = localStorage.getItem('theme');
+            const toggle = document.querySelector('.theme-toggle');
+            
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                toggle.textContent = '☀️';
+            }
+        });
+        
+        // Search functionality
+        function searchAPI() {
+            const searchTerm = document.querySelector('.search-box').value.toLowerCase();
+            const apiCards = document.querySelectorAll('.api-card');
+            const sections = document.querySelectorAll('.section');
+            
+            apiCards.forEach(card => {
+                const title = card.querySelector('.api-title').textContent.toLowerCase();
+                const endpoint = card.querySelector('.endpoint').textContent.toLowerCase();
+                const content = card.textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || endpoint.includes(searchTerm) || content.includes(searchTerm)) {
+                    card.style.display = 'block';
+                    card.style.animation = 'fadeInUp 0.3s ease-out';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            // Show/hide sections based on visible cards
+            sections.forEach(section => {
+                const visibleCards = section.querySelectorAll('.api-card[style*="block"]');
+                if (visibleCards.length > 0 || searchTerm === '') {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        }
+        
+        // Copy to clipboard
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                // Create temporary success message
+                const button = event.target;
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                button.style.background = '#27ae60';
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = '#3498db';
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                alert('Không thể sao chép. Vui lòng copy thủ công.');
+            });
+        }
+        
+        // Smooth scrolling for table of contents
+        document.querySelectorAll('.toc a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Add keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            // Ctrl + K to focus search
+            if (e.ctrlKey && e.key === 'k') {
+                e.preventDefault();
+                document.querySelector('.search-box').focus();
+            }
+            
+            // Ctrl + D to toggle dark mode
+            if (e.ctrlKey && e.key === 'd') {
+                e.preventDefault();
+                toggleTheme();
+            }
+        });
+        
+        // Animate sections on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease-out';
+                }
+            });
+        });
+        
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
+
+

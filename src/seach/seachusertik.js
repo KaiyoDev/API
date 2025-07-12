@@ -77,7 +77,7 @@ const seachusertik = async (req, res) => {
                 total_shares: totalShares,
                 total_comments: totalComments,
                 total_views: totalViews
-            }
+            }, userInfo
         });
 
     } catch (error) {
