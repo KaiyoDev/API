@@ -35,7 +35,7 @@ async function checkUrlSafety(url) {
         const promises = CHECK_APIS.map(async (apiUrl, index) => {
             try {
                 const response = await axios.post(apiUrl, payload, {
-                    timeout: 10000, // 10 giây timeout
+                    timeout: 20000, // 20 giây timeout
                     headers: {
                         'Content-Type': 'application/json',
                         'User-Agent': 'Kaiyo-Api/1.0'

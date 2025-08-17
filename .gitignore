@@ -19,6 +19,10 @@ test.js
 .env.test.local
 .env.production.local
 
+# Email data
+src/data/gmail-reports.json
+*.csv
+
 # Logs
 npm-debug.log*
 yarn-debug.log*
